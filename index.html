@@ -1,72 +1,72 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Redirecionando...</title>
-  <style>
-    body {
-      background-color: #FFFFFF;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    .loading {
-      animation: rotate 1s linear infinite;
-      border: 5px solid #F3F3F3;
-      border-top: 5px solid #3498DB;
-      border-radius: 50%;
-      height: 50px;
-      width: 50px;
-      margin: 20px auto;
-    }
-    @keyframes rotate {
-      0% {
-        transform: rotate(0);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-    h1 {
-      text-align: center;
-      margin-top: 50px;
-      font-size: 24px;
-    }
-  </style>
-  <script>
-    // Função para redirecionar para um grupo de WhatsApp aleatório
-    function redirecionar() {
-      var grupos = [
-        'https://wa.me/5561982096195?text=Oi%2C%20quero%20ver%20seus%20conteudos', // Grupo 1
-        'https://wa.me/5561981183275?text=Oi%2C%20quero%20ver%20seus%20conteudos', // Grupo 2
-        'https://wa.me/5561982104691?text=Oi%2C%20quero%20ver%20seus%20conteudos', // Grupo 3
-      ];
-      var grupoAleatorio = grupos[Math.floor(Math.random() * grupos.length)];
-      window.location.href = grupoAleatorio;
-    }
-    // Função para enviar o evento de PageView para o Facebook
-    function enviarPixel() {
-      fbq('track', 'PageView');
-    }
-  </script>
-  <!-- Pixel do Facebook -->
-  <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1223363102507544');
-    fbq('track', 'PageView');
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecionando para o WhatsApp</title>
+    
+    <!-- Pixel do Facebook -->
+    <script>
+        !function(f,b,e,v,n,t,s) {
+            if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+            n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);
+            t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '1223363102507544'); // ID do Pixel
+            fbq('track', 'PageView');
+    </script>
+
+    <!-- Estilos simples -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .message {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .loading {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
 </head>
-<body onload="setTimeout(redirecionar, 5000); enviarPixel();">
-  <div class="loading"></div>
-  <h1>Aguarde alguns segundos, vou liberar o que prometi para você...</h1>
+<body>
+    <div class="container">
+        <p class="message">Aguarde alguns segundos, vou liberar o que prometi para você...</p>
+        <p class="loading">Redirecionando...</p>
+    </div>
+
+    <script>
+        // Função para realizar o redirecionamento com o número aleatório
+        fetch('https://n8napi.jediael.uk/webhook/presselfe?timestamp=' + new Date().getTime())  // Adiciona timestamp para garantir requisição única
+            .then(response => response.json())
+            .then(data => {
+                const numero = data.numbers[0];  // Número gerado no fluxo do n8n
+                const urlWhatsApp = `https://wa.me/${numero}?text=Oi%2C%20quero%20ver%20seus%20conteudos`;
+                setTimeout(() => {
+                    window.location.href = urlWhatsApp;
+                }, 3000);  // Redireciona após 3 segundos
+            })
+            .catch(error => {
+                console.error('Erro ao obter o número:', error);
+                alert('Houve um erro ao processar sua solicitação.');
+            });
+    </script>
 </body>
 </html>
