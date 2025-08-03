@@ -48,13 +48,13 @@
 </head>
 <body>
     <div class="container">
-        <p class="message">Aguarde alguns segundos, vou liberar o que prometi para você...</p>
+        <p class="message">Aguarde alguns segundos, vou liberar o que prometi para você ❤</p>
         <p class="loading">Redirecionando...</p>
     </div>
 
     <script>
         // Função para realizar o redirecionamento com o número aleatório
-        fetch('https://n8napi.jediael.uk/webhook/presselfe?timestamp=' + new Date().getTime())  // Adiciona timestamp para garantir requisição única
+        fetch('https://n8napi.jediael.uk/webhook/presselfe2?timestamp=' + new Date().getTime())  // Adiciona timestamp para garantir requisição única
             .then(response => response.json())
             .then(data => {
                 const numero = data.numbers[0];  // Número gerado no fluxo do n8n
