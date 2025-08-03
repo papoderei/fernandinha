@@ -547,13 +547,29 @@
         font-size: 1.5rem;
       }
     }
+	
+	
+	
+	#timer {
+            font-size: 20px;
+			font-weight: bold;
+            color: #ff6b9d;
+            background-color: white;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+			border-radius: 12px;
+        }
+	
   </style>
 </head>
 <body>
   <div class="container">
+  
     <div class="header">
-
       <div class="header-bg" id="header-bg"></div>
+	  <div id="timer">15:00</div>
       <h1>Acesso Exclusivo</h1>
    <!--   <p>Acesso Imediato</p> -->
     </div>
@@ -763,5 +779,44 @@
       });
     });
   </script>
+  
+  
+  
+  <script>
+        const TIMER_KEY = 'timerEndTime';
+        const TOTAL_TIME_MS = 15 * 60 * 1000; // 15 minutes in milliseconds
+        const timerElement = document.getElementById('timer');
+
+        function formatTime(ms) {
+            const minutes = Math.floor(ms / 60000);
+            const seconds = Math.floor((ms % 60000) / 1000);
+            return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function updateTimer() {
+            const endTime = parseInt(localStorage.getItem(TIMER_KEY), 10);
+            if (!endTime || isNaN(endTime)) {
+                // No valid end time, set a new one
+                const newEndTime = Date.now() + TOTAL_TIME_MS;
+                localStorage.setItem(TIMER_KEY, newEndTime);
+                timerElement.textContent = formatTime(TOTAL_TIME_MS);
+                return;
+            }
+
+            const remaining = endTime - Date.now();
+            if (remaining <= 0) {
+                timerElement.textContent = 'PROMOÇÃO ENCERRADA!';
+                clearInterval(interval);
+            } else {
+                timerElement.textContent = formatTime(remaining);
+            }
+        }
+
+        // Initial update
+        updateTimer();
+
+        // Update every second
+        const interval = setInterval(updateTimer, 1000);
+    </script>
 
 </body></html>
