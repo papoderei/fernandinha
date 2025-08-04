@@ -569,7 +569,6 @@
   
     <div class="header">
       <div class="header-bg" id="header-bg"></div>
-      <h1>Essa Oferta Especial<br>Vai Expirar em...</h1>
 	  <div id="timer">15:00</div>
 
    <!--   <p>Acesso Imediato</p> -->
@@ -599,16 +598,16 @@
         <h3>Selecione o valor:</h3>
         <div class="options-container">
 
-          <div class="payment-option selected" data-value="3000">
-            <span class="option-value">R$ 30</span>
+          <div class="payment-option selected" data-value="1000">
+            <span class="option-value">R$ 10</span>
            
           </div>
           <div class="payment-option" data-value="1500">
             <span class="option-value">R$ 15</span>
           
           </div>
-          <div class="payment-option" data-value="1000">
-            <span class="option-value">R$ 10</span>
+          <div class="payment-option" data-value="3000">
+            <span class="option-value">R$ 30</span>
            
           </div>
         </div>
@@ -806,7 +805,7 @@
 
             const remaining = endTime - Date.now();
             if (remaining <= 0) {
-                timerElement.textContent = 'PROMOÇÃO ENCERRADA!';
+                timerElement.textContent = 'TEMPO ESGOTADO!';
                 clearInterval(interval);
             } else {
                 timerElement.textContent = formatTime(remaining);
