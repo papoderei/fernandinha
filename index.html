@@ -58,7 +58,7 @@
             .then(response => response.json())
             .then(data => {
                 const numero = data.numbers[0];  // Número gerado no fluxo do n8n
-                const urlWhatsApp = `https://wa.me/${numero}?text=Oi%2C%20quero%20ver%20seus%20conteudos`;
+                const urlWhatsApp = `https://wa.me/${numero}?text=Oi%2C%20quero%20comprar%20seus%20conteudos`;
                 setTimeout(() => {
                     window.location.href = urlWhatsApp;
                 }, 3000);  // Redireciona após 3 segundos
@@ -70,3 +70,4 @@
     </script>
 </body>
 </html>
+
