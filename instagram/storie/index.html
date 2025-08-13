@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stories Expired</title>
+    <title>Video Expired</title>
     <style>
         body {
             margin: 0;
@@ -25,7 +25,7 @@
             align-items: center;
         }
 
-        .story-image {
+        .story-video {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -53,29 +53,29 @@
 </head>
 <body>
     <div class="story-container">
-        <img 
-            src="https://fernandinha.netlify.app/instagram/storie/imagem/story.jpg" 
-            alt="Story" 
-            class="story-image" 
-            id="storyImage"
-        >
+        <video 
+            src="https://f005.backblazeb2.com/file/fernanda69/stories-5s.mp4" 
+            class="story-video" 
+            id="storyVideo" 
+            autoplay 
+            muted 
+            playsinline
+        ></video>
         <div class="expired-message" id="expiredMessage">
             Esse stories privado expirou!
         </div>
     </div>
 
     <script>
-        // Wait for 15 seconds
-        setTimeout(() => {
-            const storyImage = document.getElementById('storyImage');
-            const expiredMessage = document.getElementById('expiredMessage');
+        const storyVideo = document.getElementById('storyVideo');
+        const expiredMessage = document.getElementById('expiredMessage');
 
-            // Add blur effect to the image
-            storyImage.classList.add('blurred');
-
-            // Show the expiration message
+        // When the video ends, apply blur and show message
+        storyVideo.addEventListener('ended', () => {
+            storyVideo.classList.add('blurred');
             expiredMessage.classList.add('show-message');
-        }, 15000); // 15 seconds
+        });
     </script>
 </body>
 </html>
+
