@@ -591,8 +591,15 @@
 
 }
 
+
+
 #timer-description {
 font-size:	15px;
+weight: 700;
+}
+
+.texto-final{
+font-size: 15px;
 }
 
 	
@@ -909,6 +916,7 @@ function updateTimer() {
     const remaining = endTime - Date.now();
     if (remaining <= 0) {
         timerElement.textContent = 'Amor, o tempo acabou, mas se gerar o PIX agora, eu ainda libero o desconto especial para você! Mas se fechar a página, quando voltar será com o valor cheio. Corre, bb!';
+		timerElement.classList.add('texto-final');  // Adicionando a classe para personalizar o estilo
         clearInterval(interval);
     } else {
         const { minutes, seconds } = formatTime(remaining);
